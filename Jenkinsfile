@@ -1,9 +1,15 @@
-pipeline {
-	agent any 
-	stages {
-		stage('clean package') {
-			steps {
-				sh 'mvn clean package -DskipTests'
-				}
-		}									}
+pipeline{
+    agent any
+    stages{
+        stage('Build'){
+            steps{
+                sh 'mvn -DskipTests clean package'
+            }
+        }
+        stage('Test'){
+            steps{
+                sh 'mvn test'
+            }
+        }
+    }
 }
